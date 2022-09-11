@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'pages/pages.dart';
 //import 'pages/qrcode_page.dart';
-import 'pages/testroute.dart';
+import 'pages/qrcodepage.dart';
 
 void main() {
   runApp(const App());

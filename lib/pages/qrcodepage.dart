@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
-import 'SecondPage.dart';
-
 class QRCodePage extends StatefulWidget {
   const QRCodePage({Key? key}) : super(key: key);
 
@@ -12,7 +10,7 @@ class QRCodePage extends StatefulWidget {
 
 class _QRCodePageState extends State<QRCodePage> {
   List<String> tickets = [];
-  List<String> names = ['13103522', 'maça', 'uva'];
+  List<String> names = ['13103522', '7894488000101'];
   readQRCode() async {
     Stream<dynamic>? reader = FlutterBarcodeScanner.getBarcodeStreamReceiver(
       "#FFFFFF",
@@ -25,10 +23,9 @@ class _QRCodePageState extends State<QRCodePage> {
         setState(() {
           if (!tickets.contains(code.toString()) &&
               code != '-1' &&
-              code.contains(names)) {
+              names.toList().contains(code)) {
             tickets.add(code.toString());
-
-            print('LISTA:$tickets');
+            print('LIST:$tickets');
           }
         });
       });
@@ -71,12 +68,11 @@ class _QRCodePageState extends State<QRCodePage> {
     );
   }
 
-  // get the text in the TextField and start the Second Screen
   void _sendDataToSecondScreen(BuildContext context) {
     for (var i = 0; i < tickets.length; i++) {
       if (tickets[i] == '13103522') tickets[i] = 'Danilo';
     }
-    print('LISTAA:$tickets');
+    print('LIST:$tickets');
     Navigator.push(
         context,
         MaterialPageRoute(
@@ -108,18 +104,4 @@ class SecondScreen extends StatelessWidget {
       ),
     );
   }
-  /* @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return Card(
-            child: ListTile(
-              title: Text(text.toString()),
-            ),
-          );
-        },
-      ),
-    );
-  }*/
 }

@@ -72,8 +72,11 @@ class _QRCodePageState extends State<QRCodePage> {
   void _sendDataToSecondScreen(BuildContext context) {
     List<String> listNames = barNumbers.map((element) => element).toList();
     for (var i = 0; i < listNames.length; i++) {
-      if (listNames[i] == ['13103522', '7894488000101'])
-        listNames[i] = ['Danilo', 'pedro'] as String;
+      if (listNames[i] == '13103522') listNames[i] = 'Danilo';
+      if (listNames[i] == '45323480') listNames[i] = 'Elizabethy';
+      if (listNames[i] == '89876880') listNames[i] = 'Nelton';
+      if (listNames[i] == '21765780') listNames[i] = 'Geison';
+      if (listNames[i] == '34534750') listNames[i] = 'Rayla';
     }
     print('LIST:$listNames');
     Navigator.push(

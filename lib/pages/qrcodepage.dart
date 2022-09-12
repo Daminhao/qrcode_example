@@ -9,8 +9,9 @@ class QRCodePage extends StatefulWidget {
 }
 
 class _QRCodePageState extends State<QRCodePage> {
-  List<String> tickets = [];
+  List<String> barNumbers = [''];
   List<String> names = ['13103522', '7894488000101'];
+
   readQRCode() async {
     Stream<dynamic>? reader = FlutterBarcodeScanner.getBarcodeStreamReceiver(
       "#FFFFFF",
@@ -21,11 +22,11 @@ class _QRCodePageState extends State<QRCodePage> {
     if (reader != null) {
       reader.listen((code) {
         setState(() {
-          if (!tickets.contains(code.toString()) &&
+          if (!barNumbers.contains(code.toString()) &&
               code != '-1' &&
               names.toList().contains(code)) {
-            tickets.add(code.toString());
-            print('LIST:$tickets');
+            barNumbers.add(code.toString());
+            print('LIST:$barNumbers');
           }
         });
       });
@@ -43,7 +44,7 @@ class _QRCodePageState extends State<QRCodePage> {
           children: [
             //if (ticket != '')
             Text(
-              'Ticket: ${(tickets)}',
+              'Ticket: ${(barNumbers)}',
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 90),
@@ -69,15 +70,17 @@ class _QRCodePageState extends State<QRCodePage> {
   }
 
   void _sendDataToSecondScreen(BuildContext context) {
-    for (var i = 0; i < tickets.length; i++) {
-      if (tickets[i] == '13103522') tickets[i] = 'Danilo';
+    List<String> listNames = barNumbers.map((element) => element).toList();
+    for (var i = 0; i < listNames.length; i++) {
+      if (listNames[i] == ['13103522', '7894488000101'])
+        listNames[i] = ['Danilo', 'pedro'] as String;
     }
-    print('LIST:$tickets');
+    print('LIST:$listNames');
     Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => SecondScreen(
-            text: tickets,
+            text: listNames,
           ),
         ));
   }

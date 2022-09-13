@@ -10,7 +10,7 @@ class QRCodePage extends StatefulWidget {
 
 class _QRCodePageState extends State<QRCodePage> {
   List<String> barNumbers = [''];
-  List<String> names = ['13103522', '7894488000101'];
+  List<String> names = ['13103522', '45323480', '89876880', '21765780'];
 
   readQRCode() async {
     Stream<dynamic>? reader = FlutterBarcodeScanner.getBarcodeStreamReceiver(
@@ -36,6 +36,15 @@ class _QRCodePageState extends State<QRCodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Image.asset(
+          "images/logo.png",
+          fit: BoxFit.contain,
+          height: 72,
+        ),
+        toolbarHeight: 88,
+      ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Column(
@@ -43,9 +52,16 @@ class _QRCodePageState extends State<QRCodePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             //if (ticket != '')
-            Text(
+            /*Text(
               'Ticket: ${(barNumbers)}',
               style: const TextStyle(fontSize: 20),
+            ),*/
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Image.asset(
+                "images/scanerhand.png",
+                height: 300,
+              ),
             ),
             const SizedBox(height: 90),
             ElevatedButton.icon(
@@ -73,7 +89,7 @@ class _QRCodePageState extends State<QRCodePage> {
     List<String> listNames = barNumbers.map((element) => element).toList();
     for (var i = 0; i < listNames.length; i++) {
       if (listNames[i] == '13103522') listNames[i] = 'Danilo';
-      if (listNames[i] == '45323480') listNames[i] = 'Elizabethy';
+      if (listNames[i] == '45323480') listNames[i] = 'Francy';
       if (listNames[i] == '89876880') listNames[i] = 'Nelton';
       if (listNames[i] == '21765780') listNames[i] = 'Geison';
       if (listNames[i] == '34534750') listNames[i] = 'Rayla';
@@ -97,12 +113,31 @@ class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Image.asset(
+          "images/logo.png",
+          fit: BoxFit.contain,
+          height: 72,
+        ),
+        toolbarHeight: 88,
+      ),
       body: ListView.separated(
-        padding: const EdgeInsets.all(90),
+        padding: const EdgeInsets.all(20),
         itemBuilder: (BuildContext context, int index) {
           return SizedBox(
-            height: 30,
-            child: Center(child: Text('Nome: ${text[index]}')),
+            child: Column(
+              children: [
+                Text(
+                  // ignore: unnecessary_string_interpolations
+                  '${text[index]}',
+                  style: const TextStyle(
+                    fontSize: 30,
+                    color: Color.fromARGB(255, 149, 172, 214),
+                  ),
+                ),
+              ],
+            ),
           );
         },
         itemCount: text.length,
@@ -111,3 +146,5 @@ class SecondScreen extends StatelessWidget {
     );
   }
 }
+
+//'${text[index]}',

@@ -15,12 +15,14 @@ class App extends StatelessWidget {
       title: 'QRCode Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.grey[900],
+        appBarTheme: const AppBarTheme(
+          color: Color.fromARGB(90, 86, 76, 109),
+        ),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 65, 48, 95),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.black,
-            backgroundColor: Colors.redAccent,
+            foregroundColor: const Color.fromARGB(255, 34, 100, 145),
+            backgroundColor: const Color.fromARGB(255, 189, 193, 233),
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 36),
             textStyle:
                 const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
